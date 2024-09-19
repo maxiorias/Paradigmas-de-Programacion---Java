@@ -4,7 +4,17 @@ public class Hulk {
     private int peso;                    // Inicializo sus atributos
     private String colorPiel;            
     private String transformacion;       
-    private String nombre;               
+    private String nombre;
+    
+    // modificacion para practico numero 3  
+    //Variables estaticas para contar los hulks y cantidad de enojos
+    
+    private static int totalHulks = 0;
+    private static int totalEnojos = 0;
+    
+    //conteo individual de hulks enojados
+    
+    private int vecesEnojado;
     
     // Constructor
     public Hulk(String nombre, int peso, String colorPiel) { 
@@ -12,14 +22,25 @@ public class Hulk {
         this.peso = peso;                
         this.colorPiel = colorPiel;      
         this.transformacion = "Humano";  // Inicialmente es "Humano"
+        
+        // modificacion para practico numero 3 
+        
+        this.vecesEnojado = 0;           // inicialmente no esta enojado
+        
+        totalHulks++;
     }
 
     // Método para transformar a Hulk
+    
     public void transformar() {
         this.peso *= 5;
         this.colorPiel = "Verde";
         this.transformacion = "Hulk";
         System.out.println("Hulk se ha transformado. Ahora es de color " + colorPiel + " y pesa " + peso + " kg.");
+        
+        //modificacion practico numero 3
+        this.vecesEnojado++;
+        totalEnojos++;
     }
 
     // Método para calmar a Hulk
@@ -38,6 +59,16 @@ public class Hulk {
             System.out.println("Aaaaahg, soy " + transformacion + ". Mi color de piel es " + colorPiel + " y peso " + peso + " kg.");
         }
     }
+    
+    //modificacion practico numero 3 
+    // calculo de promedio de enojos
+    
+    public static double getPromedioEnojos() {
+    	if (totalHulks == 0) {
+    		return 0;
+    	}
+    	return(double) totalEnojos / totalHulks;
+    }
 
     // Getters
     public int getPeso() {
@@ -46,6 +77,10 @@ public class Hulk {
 
     public String getColorPiel() {
         return colorPiel;
+    }
+    
+    public int getVecesEnojado() {
+    	return vecesEnojado;
     }
 }
 
